@@ -1,0 +1,196 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <math.h>
+#define SIZE 20
+void getTypes(int*, int*); //retrieves the inputs for the calculation types for odd and even elements
+void getArray(int inputarray[SIZE]); //retrieves and stores the elements from the input array
+void TypeCalc(int, int, int inputarray[SIZE]); //uses input to calculate the base of the odd or even elements
+int main()
+{
+    //Declarations
+    int oddtype; //input for the type of calculation for odd elements
+    int eventype; //input for the type of calculation for even elements
+    int inputarray[SIZE]; //array of elements inputted by the user
+    
+    //input section
+    getTypes(&oddtype, &eventype); //retrieves the inputs for the calculation types for odd and even elements
+    getArray(inputarray); //retrieves and stores the elements from the input array
+    
+    //calculation section
+    TypeCalc(int oddtype, int eventype, int inputarray[SIZE]);
+    
+    return 0;
+}
+
+//FUNCTION HEADER
+void getTypes(int* oddtype, int* eventype)
+{
+    int Oddtype;
+    int Eventype;
+    do
+    {
+    printf("Enter base for odd numbers -> ");
+    scanf("%i", Oddtype);
+    
+    if (Oddtype < 2 || Oddtype > 9)
+    {
+        printf("\nError! Base must be in the range from 2 to 9.");
+    }
+    } while (Oddtype < 2 || Oddtype > 9);
+    
+    oddtype = Oddtype;
+    
+    do
+    {
+    printf("Enter base for even numbers -> ");
+    scanf("%i", Eventype);
+    
+    if (Eventype < 2 || Eventype > 9)
+    {
+        printf("\nError! Base must be in the range from 2 to 9.")
+    }
+    } while (Eventype < 2 || Eventype > 9);
+    
+    eventype = Eventype;
+    
+    return (0);
+}
+
+//FUNCTION HEADER - getArray
+void getArray(int inputarray[SIZE])
+{
+    int index; //local variable used for indexing 
+    //int size; //local variable for finding the size of the 
+    int array[SIZE];
+    
+    printf("Enter up to 20 integer values -> ");
+    
+    do
+    {
+        scanf("%d", &inputarray[index]);
+        //size = index;
+    }while (inputarray[index] > 0 || index <= 20);
+    
+    return;
+}
+
+//FUNCTION HEADER - TypeCalc
+void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
+{
+    int i; //local variable used to indexing in the loop
+    int quotient; //local variable that represents the quotient of the integer
+    int remain; //local variable that represents the remainder of the integer
+    int oddval; //local variable that represents the odd value
+    int evenval; //local variable that represents the even value
+    int count; //local variable that represents the numbe of iterations of the loop
+    
+    //calculation type print selection
+    //ODD ELEMENTS ONLY
+    switch(oddtype)
+    {
+        case 2:
+        printf("Binary values: ");
+        break;
+        case 3:
+        printf("Ternary values: ");
+        break;
+        case 4:
+        printf("Quaternary values: ");
+        break;
+        case 5:
+        printf("Quinary values: ");
+        break;
+        case 6:
+        printf("Senary values: ");
+        break;
+        case 7:
+        printf("Septenary values: ");
+        break;
+        case 8:
+        printf("Octal values: ");
+        break;
+        case 9:
+        printf("Nonary values: ");
+        break;
+    }
+    
+    for(i = 0, i > 20, ++i)
+    {
+        if ((inputarray[i] % 2) == 1)
+        {
+            count = 0;
+            remain = inputarray[i] % oddtype;
+            oddval = remain;
+            quotient = inputarray[i] / oddtype;
+            
+            while (quotient != 0)
+            {
+                count += count;
+                remain = quotient % oddtype;
+                oddval = (pow(10, count) * remain) + binaryval;
+                quotient = quotient / oddtype;
+            }
+            
+            inputarray[i] = oddval;
+            printf("%d ", inputarray[i]);
+        }
+    }
+    
+    //EVEN ELEMENTS ONLY
+    //calculation type print selection
+    switch(oddtype)
+    {
+        case 2:
+        printf("Binary values: ");
+        break;
+        case 3:
+        printf("Ternary values: ");
+        break;
+        case 4:
+        printf("Quaternary values: ");
+        break;
+        case 5:
+        printf("Quinary values: ");
+        break;
+        case 6:
+        printf("Senary values: ");
+        break;
+        case 7:
+        printf("Septenary values: ");
+        break;
+        case 8:
+        printf("Octal values: ");
+        break;
+        case 9:
+        printf("Nonary values: ");
+        break;
+    }
+    for(i = 0, i > 20, ++i)
+    {
+        if ((inputarray[i] % 2) == 0)
+        {
+            count = 0;
+            remain = inputarray[i] % eventype;
+            evenval = remain;
+            quotient = inputarray[i] / eventype;
+            
+            while (quotient != 0)
+            {
+                count += count;
+                remain = quotient % eventype;
+                evenval = (pow(10, count) * remain) + binaryval;
+                quotient = quotient / eventype;
+            }
+            
+            inputarray[i] = evenval;
+            printf("%d ", inputarray[i]);
+        }
+    }
+}
