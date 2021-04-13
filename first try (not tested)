@@ -9,7 +9,8 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <stdio.h>
 #include <math.h>
 #define SIZE 20
-void getTypes(int*, int*); //retrieves the inputs for the calculation types for odd and even elements
+int getOddType(); //retrieves the inputs for the calculation types for odd elements
+int getEvenType(); //retrieves the inputs for the calculation types for even elements
 void getArray(int inputarray[SIZE]); //retrieves and stores the elements from the input array
 void TypeCalc(int, int, int inputarray[SIZE]); //uses input to calculate the base of the odd or even elements
 int main()
@@ -20,24 +21,25 @@ int main()
     int inputarray[SIZE]; //array of elements inputted by the user
     
     //input section
-    getTypes(&oddtype, &eventype); //retrieves the inputs for the calculation types for odd and even elements
+    oddtype = getOddType(); //retrieves the input for the calculation types for odd elements
+    eventype = getEvenType(); //retrieves the input for the calculation types for even elements
     getArray(inputarray); //retrieves and stores the elements from the input array
     
     //calculation section
-    TypeCalc(int oddtype, int eventype, int inputarray[SIZE]);
+    TypeCalc(oddtype, eventype, inputarray);
     
     return 0;
 }
 
 //FUNCTION HEADER
-void getTypes(int* oddtype, int* eventype)
+int getOddType(int oddtype)
 {
     int Oddtype;
-    int Eventype;
+   // int Eventype;
     do
     {
     printf("Enter base for odd numbers -> ");
-    scanf("%i", Oddtype);
+    scanf("%d", &Oddtype);
     
     if (Oddtype < 2 || Oddtype > 9)
     {
@@ -46,21 +48,27 @@ void getTypes(int* oddtype, int* eventype)
     } while (Oddtype < 2 || Oddtype > 9);
     
     oddtype = Oddtype;
-    
+    return(oddtype);
+}
+
+//FUNCTION HEADER
+int getEvenType(int eventype)
+{
+    int Eventype;
     do
     {
     printf("Enter base for even numbers -> ");
-    scanf("%i", Eventype);
+    scanf("%d", &Eventype);
     
     if (Eventype < 2 || Eventype > 9)
     {
-        printf("\nError! Base must be in the range from 2 to 9.")
+        printf("\nError! Base must be in the range from 2 to 9.");
     }
     } while (Eventype < 2 || Eventype > 9);
     
     eventype = Eventype;
     
-    return (0);
+    return(eventype);
 }
 
 //FUNCTION HEADER - getArray
@@ -121,7 +129,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
         break;
     }
     
-    for(i = 0, i > 20, ++i)
+    for(i = 0; i > 20; ++i)
     {
         if ((inputarray[i] % 2) == 1)
         {
@@ -134,7 +142,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
             {
                 count += count;
                 remain = quotient % oddtype;
-                oddval = (pow(10, count) * remain) + binaryval;
+                oddval = (pow(10, count) * remain) + oddval;
                 quotient = quotient / oddtype;
             }
             
@@ -172,7 +180,8 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
         printf("Nonary values: ");
         break;
     }
-    for(i = 0, i > 20, ++i)
+    
+    for(i = 0; i > 20; ++i)
     {
         if ((inputarray[i] % 2) == 0)
         {
@@ -185,7 +194,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
             {
                 count += count;
                 remain = quotient % eventype;
-                evenval = (pow(10, count) * remain) + binaryval;
+                evenval = (pow(10, count) * remain) + evenval;
                 quotient = quotient / eventype;
             }
             
