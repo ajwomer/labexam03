@@ -75,16 +75,23 @@ int getEvenType(int eventype)
 void getArray(int inputarray[SIZE])
 {
     int index; //local variable used for indexing 
-    //int size; //local variable for finding the size of the 
-    int array[SIZE];
+    int size; //local variable for finding the size 
+    //int inputarray[SIZE];
     
     printf("Enter up to 20 integer values -> ");
     
-    do
+    for(index = 0; index < 20; ++index)
     {
         scanf("%d", &inputarray[index]);
-        //size = index;
-    }while (inputarray[index] > 0 || index <= 20);
+    }
+    /*do
+    {
+        scanf("%d", &inputarray[index]);
+        size = index;
+        printf("inputarray = %d", inputarray[index]);
+        index += 1;
+    }while (inputarray[index] > 0 || size < 20);
+    */
     
     return;
 }
@@ -99,6 +106,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
     int evenval; //local variable that represents the even value
     int count; //local variable that represents the numbe of iterations of the loop
     
+    printf("IM ACTUALLY DOING SOMETHING");
     //calculation type print selection
     //ODD ELEMENTS ONLY
     switch(oddtype)
@@ -129,7 +137,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
         break;
     }
     
-    for(i = 0; i > 20; ++i)
+    for(i = 0; i < 20; ++i)
     {
         if ((inputarray[i] % 2) == 1)
         {
@@ -181,7 +189,7 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
         break;
     }
     
-    for(i = 0; i > 20; ++i)
+    for(i = 0; i < 20; ++i)
     {
         if ((inputarray[i] % 2) == 0)
         {
@@ -202,4 +210,5 @@ void TypeCalc(int oddtype, int eventype, int inputarray[SIZE])
             printf("%d ", inputarray[i]);
         }
     }
+    return;
 }
