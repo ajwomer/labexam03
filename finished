@@ -1,0 +1,228 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <math.h>
+#define SIZE 20
+int getOddType(); //retrieves the inputs for the calculation types for odd elements
+int getEvenType(); //retrieves the inputs for the calculation types for even elements
+int getArray(int inputarray[SIZE]); //retrieves and stores the elements from the input array
+void TypeCalc(int, int, int, int inputarray[SIZE]); //uses input to calculate the base of the odd or even elements
+
+int main()
+{
+    //Declarations
+    int oddtype; //input for the type of calculation for odd elements
+    int eventype; //input for the type of calculation for even elements
+    int inputarray[SIZE]; //array of elements inputted by the user
+    int range; //number of elements in the input array
+    
+    //input section
+    oddtype = getOddType(); //retrieves the input for the calculation types for odd elements
+    eventype = getEvenType(); //retrieves the input for the calculation types for even elements
+    range = getArray(inputarray); //retrieves and stores the elements from the input array
+    
+    //calculation section
+    TypeCalc(range, oddtype, eventype, inputarray); //calculates the base calculations and prints them
+    
+    return 0;
+}
+
+//FUNCTION HEADER
+int getOddType(int oddtype)
+{
+    int Oddtype; //local variable for odd type input
+    do
+    {
+    printf("Enter base for odd numbers -> ");
+    scanf("%d", &Oddtype);
+    
+    if (Oddtype < 2 || Oddtype > 9)
+    {
+        printf("\nError! Base must be in the range from 2 to 9.\n\n");
+    }
+    } while (Oddtype < 2 || Oddtype > 9);
+    
+    oddtype = Oddtype;
+    return(oddtype);
+}
+
+//FUNCTION HEADER
+int getEvenType(int eventype)
+{
+    int Eventype;
+    do
+    {
+    printf("Enter base for even numbers -> ");
+    scanf("%d", &Eventype);
+    
+    if (Eventype < 2 || Eventype > 9)
+    {
+        printf("\nError! Base must be in the range from 2 to 9.\n\n");
+    }
+    } while (Eventype < 2 || Eventype > 9);
+    
+    eventype = Eventype;
+    
+    return(eventype);
+}
+
+//FUNCTION HEADER - getArray
+int getArray(int inputarray[SIZE])
+{
+    int index; //local variable used for indexing 
+    int x; //local variable used for indexing 
+    int range; //local variable used for determining the size of the input array
+    range = 20;
+    
+    printf("Enter up to 20 integer values -> ");
+    
+    for(index = 0; index < 20; ++index)
+    {
+        scanf("%d", &x);
+        if(x < 0)
+        {
+            range = index;
+            index = 50;
+        }
+        inputarray[index] = x;
+    }
+    return(range);
+}
+
+//FUNCTION HEADER - TypeCalc
+void TypeCalc(int range, int oddtype, int eventype, int inputarray[])
+{
+    int i; //local variable used to indexing in the loop
+    int quotient; //local variable that represents the quotient of the integer
+    int remain; //local variable that represents the remainder of the integer
+    int oddval; //local variable that represents the odd value
+    int evenval; //local variable that represents the even value
+    int count; //local variable that represents the number of iterations of the loop
+    int index; //local variable for determining if the loop runs
+
+    //Odd Element Calculations and Output
+    switch(oddtype)
+    {
+        case 2:
+        printf("Binary values: ");
+        break;
+        case 3:
+        printf("Ternary values: ");
+        break;
+        case 4:
+        printf("Quaternary values: ");
+        break;
+        case 5:
+        printf("Quinary values: ");
+        break;
+        case 6:
+        printf("Senary values: ");
+        break;
+        case 7:
+        printf("Septenary values: ");
+        break;
+        case 8:
+        printf("Octal values: ");
+        break;
+        case 9:
+        printf("Nonary values: ");
+        break;
+    }
+    
+    index = 0;
+    for(i = 0; i < range; ++i)
+    {
+        if ((inputarray[i] % 2) == 1)
+        {
+            //printf("index = %d", index);
+            index = index + 1;
+            count = 0;
+            remain = inputarray[i] % oddtype;
+            oddval = remain;
+            quotient = inputarray[i] / oddtype;
+            
+            while (quotient != 0)
+            {
+                count = count + 1;
+                remain = quotient % oddtype;
+                oddval = (pow(10, count) * remain) + oddval;
+                quotient = quotient / oddtype;
+            }
+            printf("%d ", oddval);
+        }
+    }
+    if (index == 0)
+        {
+        printf("None");
+        }
+    printf("\n");
+    
+    //Even Element Calculations and Output
+    switch(eventype)
+    {
+        case 2:
+        printf("Binary values: ");
+        break;
+        case 3:
+        printf("Ternary values: ");
+        break;
+        case 4:
+        printf("Quaternary values: ");
+        break;
+        case 5:
+        printf("Quinary values: ");
+        break;
+        case 6:
+        printf("Senary values: ");
+        break;
+        case 7:
+        printf("Septenary values: ");
+        break;
+        case 8:
+        printf("Octal values: ");
+        break;
+        case 9:
+        printf("Nonary values: ");
+        break;
+    }
+    
+    index = 0; 
+    for(i = 0; i < range; ++i)
+    {
+        if ((inputarray[i] % 2) == 0)
+        {
+            index = index + 1;
+            count = 0;
+            remain = inputarray[i] % eventype;
+            evenval = remain;
+            quotient = inputarray[i] / eventype;
+            
+            while (quotient != 0)
+            {
+                count = count + 1;
+                remain = quotient % eventype;
+                evenval = (pow(10, count) * remain) + evenval;
+                quotient = quotient / eventype;
+            }
+            printf("%d ", evenval);
+        }
+    }
+    
+    if (index == 0)
+        {
+        printf("None");
+        }
+   
+    printf("\n");
+    return;
+}
+
+
+
+
